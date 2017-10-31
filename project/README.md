@@ -3,12 +3,13 @@
 # Abstract
 
 Twitter is a tremendously popular social network (also notorious if you count Donald Trump's account), based on 140 character pieces of text called "tweets". Twitter has not only been used in a more personal capacity, but also in the direction of political agendas and activism.
+
 The Swiss tweets dataset offers many intriguing questions, especially given the fact that it has geolocation tags. First of all, the locations allow us to understand how Swiss tweeters are distributed throughout the country. Secondly, given Switzerland's relatively rare status as a country with multiple official languages, tweets by Swiss users offer a unique opportunity to gain insight into the relationship between the languages, contents, and locations of tweets. In addition, we are interested in gaining insight into Swiss political activity on Twitter and its distribution across languages and locations.
 This project will aim to find answers for - or at least gain insights into - the questions listed below.
 
 # Research questions
 
-- Does the density of the location of tweets correspond to population densities? Or is are the tweets significantly more concentrated in cities?
+- Does the density of the location of tweets correspond to population densities? Or are the tweets significantly more concentrated in cities?
 - Can we reconstruct the Röstigraben only based on the language of tweets?
 - Are there any spikes in activity and do they correspond to particular events (e.g. referendums) 
 - How involved are swiss people in politics on twitter? Which areas are most involved?
