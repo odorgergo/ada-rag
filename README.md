@@ -1,4 +1,4 @@
-# ada-rag
+# ATTENTION, dear reviewers!
 
 Ladies and gentlemen, for the peer (or TA!) review of HW3, please check out this address for the exported version of the notebook:
 https://odorgergo.github.io/ada-rag/
