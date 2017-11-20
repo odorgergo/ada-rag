@@ -1,58 +1,65 @@
 from pyspark import SparkContext, SQLContext
-import io
-import json
 import numpy as np
 sc = SparkContext.getOrCreate()
 
 sqlContext = SQLContext(sc)
 sqlContext.setConf("spark.sql.parquet.compression.codec","snappy")
 
-import os
-import pandas as pd
-import json
-#import seaborn as sns
 import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import csv
-#from langdetect import detect, detect_langs
-#import unicodedata
+from langdetect import detect, detect_langs
 import re
 
-from pyspark.sql.functions import *
+from pyspark.sql.functions import UserDefinedFunction
 from pyspark.sql.types import *
 
 rdd1=sc.textFile("hdfs:/user/odor/twex2.tsv")
 
-schema=pd.read_csv("/dlabdata1/odor/twitter-swisscom/schema.txt",sep="\s+",quoting=csv.QUOTE_NONE,header=None)
-schema.drop([0,3,4,5],axis=1,inplace=True)
+with open("twitter-swisscom/schema.txt", 'r') as f:
+    schema_all=f.read()
+schema_list=map(lambda x: x.split()[1],schema_all.split("\n")[0:-2])
+schema=dict(zip(schema_list, list(range(len(schema_list)))))
 
-#lang_codes=pd.read_csv("/dlabdata1/odor/twitter-swisscom/language-codes_csv.csv")
+#lang_codes=pd.read_csv("twitter-swisscom/language-codes_csv.csv")
 #lang_codes.set_index("alpha2",inplace=True)
 
+#rdd1=rdd1.sample(False,0.00001)
 rdd1=rdd1.map(lambda x: x.split("\t"))
-df=rdd1.toDF(list(schema[1].values))
 
-udf = UserDefinedFunction(lambda x: re.sub(r'http\S+', '', x), StringType())
-udf2= UserDefinedFunction(lambda x: re.sub(r'#\S+', '', x),StringType())
-udf3 = UserDefinedFunction(lambda x: re.sub(r'@\S+', '', x),StringType())
+def strip(x):
+    if len(x)>schema["text"]:
+        e = re.sub(r'http\S+', '', x[schema["text"]])
+        e = re.sub(r'#\S+', '', e)
+        e = re.sub(r'@\S+', '', e)
+        x.append(e)
+    return x
 
-df=df.withColumn("text_stripped", udf(df["text"]))
-df=df.withColumn("text_stripped", udf2(df["text_stripped"]))
-df=df.withColumn("text_stripped", udf3(df["text_stripped"]))
+rdd1=rdd1.map(strip)
+schema["text_stripped"]=len(schema)
 
-#df=df.select(*[udf(column).alias('text') if column == 'text' else column for column in df.columns])
 
 def translate(x):
     try:
-        t=detect(x)
+        t=detect(x[schema["text_stripped"]])
     except:
-        t=np.nan
-    return t
+        t="NaN"
+    x.append(t)
+    return x
 
-udf4= UserDefinedFunction(lambda x: translate(x),StringType())
-#udf5 = UserDefinedFunction(lambda x: lang_codes.English[x] if not pd.isnull(x) else "Undetected")
+rdd1=rdd1.map(translate)
+schema["lang"]=len(schema)
+
+##rdd1.take(10)
+
+def toTSVLine(data):
+  return '\t'.join(str(d.encode("utf-8")) for d in data)
+
+lines = rdd1.map(toTSVLine)
+lines.saveAsTextFile('hdfs:/user/odor/lang')
 
 
-df=df.withColumn("lang", udf2(df["text_stripped"]))
-#df=df.withColumn("language", udf3(df["text_stripped"]))
+
+#sorted(rdd2.map(lambda x: x[schema["lang"]]).countByValue().items())
+
+#with open('spark_out.txt', 'w') as f:
+#    for line in rdd1.take(2):
+#        f.write(str(line)+"\n")
