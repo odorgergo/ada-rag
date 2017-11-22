@@ -13,4 +13,3 @@ a=sorted(rdd1.map(lambda x: x[21]).countByValue().items(), key=lambda x: x[1],re
 with open('spark_out.txt', 'w') as f:
     for line in a:
         f.write(str(line)+"\n")
-
