@@ -8,15 +8,15 @@ sqlContext.setConf("spark.sql.parquet.compression.codec","snappy")
 from langdetect import detect, detect_langs
 import re
 
-with open("twitter-swisscom/twex.tsv", 'r') as f:
+with open("/dlabdata1/odor/twitter-swisscom/twex.tsv", 'r') as f:
     read_data = f.read()
 
 
-pattern=re.compile("\n")
-read_data=pattern.sub("",read_data)
+pattern_bn=re.compile("\n")
+read_data=pattern_bn.sub(" ",read_data)
 
 pattern=re.compile("\d{4,}\t\d{4,}\t\d{4}\-\d{2}\-\d{2}\s\d{2}:\d{2}:\d{2}")
-read_data=pattern.sub(lambda x: "\n"+x.group(),read_data).split("\n")
+read_data=pattern.sub(lambda x: "1a2b8c6d921hifuhg3ufb23f@#"+x.group(),read_data).split("1a2b8c6d921hifuhg3ufb23f@#")
 read_data=read_data[1:]
 
 
@@ -30,7 +30,7 @@ read_data=list(map(splitter,read_data))
 
 rdd1=sc.parallelize(read_data)
 
-with open("twitter-swisscom/schema.txt", 'r') as f:
+with open("/home/yazdania/ada-rag/project/twitter-swisscom/schema.txt", 'r') as f:
     schema_all=f.read()
 schema_list=map(lambda x: x.split()[1],schema_all.split("\n")[0:-2])
 schema=dict(zip(schema_list, list(range(len(schema_list)))))
@@ -66,10 +66,10 @@ schema["lang"]=len(schema)
 ##rdd1.take(10)
 
 def toTSVLine(data):
-  return '\t'.join(str(d) for d in data)
+  return pattern_bn.sub(" ", '\t'.join(str(d) for d in data))
 
 lines = rdd1.map(toTSVLine)
-lines.saveAsTextFile('hdfs:/user/odor/lang')
+lines.saveAsTextFile('hdfs:/user/yazdania/ADA/lang')
 
 
 
