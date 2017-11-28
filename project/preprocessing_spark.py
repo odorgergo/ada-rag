@@ -8,7 +8,7 @@ sqlContext.setConf("spark.sql.parquet.compression.codec","snappy")
 from langdetect import detect, detect_langs
 import re
 
-with open("/dlabdata1/odor/twitter-swisscom/twex.tsv", 'r') as f:
+with open("/dlabdata1/odor/twitter-swisscom/sample.tsv", 'r') as f:
     read_data = f.read()
 
 
@@ -69,7 +69,7 @@ def toTSVLine(data):
   return pattern_bn.sub(" ", '\t'.join(str(d) for d in data))
 
 lines = rdd1.map(toTSVLine)
-lines.saveAsTextFile('hdfs:/user/yazdania/ADA/lang')
+lines.saveAsTextFile('hdfs:/user/yazdania/ADA/lang_sample')
 
 
 

@@ -7,28 +7,28 @@ def find_location(lat, lon):
     return locator.reverse(str(lat)+','+str(lon)).raw['address']
 
 def append_location(x):
-    a = x.split('\t')
-    try:
-        lat = float(a[5])
-        lon = float(a[4])
+        a = x.split('\t')
+    #try:
+        lat = float(a[10])
+        lon = float(a[11])
         location = find_location(lat,lon)
         try:
             country = location['country_code']
         except:
-            country = "NaN"
+            country = "NaN1"
         try:
             canton = location['state']
         except:
-            canton = "NaN"
+            canton = "NaN1"
         try:
             postcode = location['postcode']
         except:
-            postcode = "NaN"
-    except:
-        country = "NaN"
-        canton = "NaN"
-        postcode = "NaN"
-    return x + '\t' + country + '\t' + canton + '\t' + postcode
+            postcode = "NaN1"
+    #except:
+    #    country = "NaN2"
+    #    canton = "NaN2"
+    #    postcode = "NaN2"
+        return x + '\t' + country + '\t' + canton + '\t' + postcode + '\t' + a[10] + '\t' + a[11]
     
 
 input_filename = sys.argv[1]

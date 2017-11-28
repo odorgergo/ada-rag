@@ -3,28 +3,24 @@ import sys
 import pickle
 
 """
-The schema of the new dataset is the schema of the old dataset, plus these new columns (with indices starting from 0):
-20: repetition of text
-21: language
-22: country (the abbreviated country code - NaN if coordinates are non-existent)
-23: state/canton (NaN if non-applicable or coordinates non-existent)
-24: postcode
-
-Other columns we need are:
-2: date and time of creation in the format 'yyyy-mm-dd hh:mm:ss'
-4: longitude
-5: latitude
+The output is a list of lists, and the schema of each list is as follows:
+user id
+text
+date and time of creation
+latitude
+longitude
+language
 """
 
 input_filename = sys.argv[1]
 output_dir = sys.argv[2]
 if (output_dir[len(output_dir)-1:len(output_dir)] != '/'):
     output_dir += '/'
-conf = SparkConf().set("spark.hadoop.validateOutputSpecs", "false")
+conf = SparkConf().set("spark.driver.maxResultSize", "30G")
 spark = SparkContext.getOrCreate(conf=conf)
 data_rdd = spark.textFile(input_filename)
 rdd2 = data_rdd.map(lambda x: x.split('\t'))
-rdd2 = rdd2.map(lambda x: {'datetime': x[2], 'long': x[4], 'lat': x[5], 'lang': x[21], 'country': x[22], 'canton': x[23], 'postcode': x[24]})
+rdd2 = rdd2.map(lambda x: [x[1], x[2], x[3], x[10], x[11], x[21]])
 output_list = rdd2.collect()
 print('collected!')
-pickle.dump(output_list, open(output_dir+'dataset.pkl'))
+pickle.dump(output_list, open(output_dir+'dataset.pkl', mode='w'))
