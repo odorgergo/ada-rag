@@ -1,7 +1,8 @@
 // Assign Dummy Density and Lines
 // const MAX_NEWS_NUMBER = 30;
-var YEAR = '2016';
-var MONTH = '01'
+var YEAR = '2010';
+var MONTH = '01';
+d3.select("#value").text('January'+' '+YEAR);
 // var E;
 // var ID='all';
 // import * as excerpts from '../data/excerpts_filtered.js';
@@ -497,6 +498,9 @@ for(var i = 0; i < options.length; i++) {
     select.appendChild(el);}
 select.onchange = function() {
   YEAR = select.value;
+  // mon = d3.select("#value").text.split(' ').slice(0,1);
+  mon = document.getElementById("value").textContent.split(' ').slice(0,1);
+  d3.select("#value").text(mon+' '+YEAR);
   geojson.setStyle(style)
 }
 // var input = document.getElementById('description');
