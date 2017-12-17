@@ -1,6 +1,6 @@
 // Assign Dummy Density and Lines
 // const MAX_NEWS_NUMBER = 30;
-var YEAR = '2010';
+var YEAR = '2016';
 var MONTH = '01';
 d3.select("#value").text('January'+' '+YEAR);
 // var E;
@@ -467,20 +467,19 @@ function toInt(n){ return Math.round(Number(n)); };
 // Color Map START
 // PROCESS BOOK > INTERVAL & COLOR CHOICE
 function getColor(d) {
-    return d > 700 ? '#67001f':
-           d > 600 ? '#980043':
-           d > 500 ? '#ce1256':
-           d > 400 ? '#e7298a':
-           d > 300 ? '#df65b0':
-           d > 200 ? '#c994c7':
-           d > 100 ? '#d4b9da':
+    return d > 4 ? '#91003f':
+           d > 3.5 ? '#ce1256':
+           d > 3 ? '#e7298a':
+           d > 2.5 ? '#df65b0':
+           d > 2 ? '#c994c7':
+           d > 1 ? '#d4b9da':
            d > 0   ? '#e7e1ef':
                      '#f7f4f9';
 }
 
 function style(feature) {
     return {
-        fillColor: getColor(get_density(feature.properties.GMDNAME,YEAR,MONTH)),
+        fillColor: getColor(Math.log10(get_density(feature.properties.GMDNAME,YEAR,MONTH))),
         weight: 0.5,
         opacity: 0.5,
         color: 'black',
@@ -490,7 +489,7 @@ function style(feature) {
 // Color Map END
 //show the description of the news
 var select = document.getElementById('select_year');
-var options = ['2010','2011','2012','2013','2014','2015','2016'];
+var options = ['2016','2015','2014','2013','2012','2011','2010'];
 for(var i = 0; i < options.length; i++) {
     var el = document.createElement("option");
     el.textContent = options[i];
@@ -533,7 +532,7 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 100, 200, 300, 400, 500, 600, 700]
+        grades = [0, 1, 2, 2.5, 3, 3.5, 4]
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
