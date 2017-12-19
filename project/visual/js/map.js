@@ -498,9 +498,24 @@ for(var i = 0; i < options.length; i++) {
 select.onchange = function() {
   YEAR = select.value;
   // mon = d3.select("#value").text.split(' ').slice(0,1);
+  // update(Object.values(tweet_per_lang[YEAR][MONTH]));
   mon = document.getElementById("value").textContent.split(' ').slice(0,1);
   d3.select("#value").text(mon+' '+YEAR);
   geojson.setStyle(style)
+  v = tweet_per_lang[YEAR][MONTH]
+  sum = Object.values(v).reduce((a, b) => a + b, 0);
+  if (sum!=0){
+    data = langs.map(l => ({id: l, label: l, value: v[l]*100/sum}))
+  }
+  else{
+    data = langs.map(l => ({id: l, label: l, value: 0}))
+  }
+  // DATA=Object.values(v)
+  langs = ["de", "fr", "it", "en"];
+  data = langs.map(l => ({id: l, label: l, value: v[l]*100/sum}))
+  // console.log(data)
+  d3.select("#total_title").text('Total number of tweets in'+' ' + mon+' '+YEAR +': '+ sum);
+  update(data)
 }
 // var input = document.getElementById('description');
 // select.onchange = function() {
@@ -571,3 +586,5 @@ function onEachFeature(feature, layer) {
 }
 
 geojson = L.geoJson(swiss_data, {style: style, onEachFeature: onEachFeature}).addTo(map);
+// console.log(Object.values(tweet_per_lang['2016']['09']))
+// update(Object.values(tweet_per_lang[YEAR][MONTH]));

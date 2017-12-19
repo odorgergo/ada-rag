@@ -30,6 +30,7 @@
   <script src="https://unpkg.com/d3-simple-slider@0.2.0/build/d3-simple-slider.js"></script>
   <!-- <script src="js/ConcaveHull.js"></script> -->
 
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -46,6 +47,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="project/visual/css/timeline.css">
   <link rel="stylesheet" href="project/visual/css/map.css">
+  <link rel="stylesheet" href="project/visual/css/bar.css">
 
   <!-- W3 -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -83,7 +85,30 @@
 </div>
 </div>
 
-  <div id="map"></div>
+  <!-- <div id="map"></div> -->
+  <div class="row">
+    <div class="col-sm-4" style="margin-right:-10px;">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOneV2">
+          <h5 class="mb-0">
+            <a id="total_tweets" data-toggle="collapse" href="#collapseOneV2" aria-expanded="true" aria-controls="collapseOneV2">
+              <span value="open" id="total_title"> </span>
+            </a>
+          </h5>
+          <h5 class="mb-0">
+            <a id="news_title" data-toggle="collapse" href="#collapseOneV2" aria-expanded="true" aria-controls="collapseOneV2">
+              <span value="open" id="slider_title"> distribution of languages in </span>
+            </a>
+          </h5>
+        </div>
+        <div id="bar" style="margin-left:100px; margin-top: 100px">
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-8">
+    <div id="map"></div>
+  </div>
+</div>
 
  <div id="bottom_map">
 
@@ -171,6 +196,7 @@
 
   <script src="project/visual/data/municipality_data.js"></script>
   <script src="project/visual/data/tweet_per_month.js"></script>
+  <script src="project/visual/data/tweet_per_lang.js"></script>
   <!-- <script src="data/canton_connections.js"></script>
   <script src="data/canton_raw_connections.js"></script>
   <script src="data/canton_coordinates.js"></script>
@@ -178,6 +204,8 @@
   <script src="data/yearly_connections.js"></script> -->
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
   <script src="project/visual/js/map.js"></script>
+  <script src="project/visual/js/bar.js"></script>
+  <!-- <script src="project/visual/js/bar2.js"></script> -->
   <!-- <script src="http://underscorejs.org/underscore.js"></script> -->
   <script src="project/visual/js/timeline.js"></script>
 
