@@ -1,0 +1,24 @@
+\subsection{Detecting political content}
+
+Our aim is to collect a set of political tweets, which then can be used to detect trends through time. Given the lack of labels, our approach to collecting these tweets will have to be unsupervised. We have two options at our disposal:
+\begin{enumerate}
+  \item Collect a list of known political users (i.e. politician accounts), use their tweets as the political tweet set.
+  \item Using a set of known political words (e.g. ideologies, parties), collect all tweets that contain these words as the political tweet set.
+\end{enumerate}
+The first option has the downside that politicians may also have non-political tweets, gathering the set can be time-consuming, and also that this will not capture political tweets made by the people. The second option has the downside that gathering a large list of words may be very time consuming, and that the words need to be high precision, because we do not 
+want to capture too much noise by having words that give us many political tweets (i.e. high recall), but also many non-political ones. Therefore, to gather a sufficiently large set of tweets with high precision, we propose the following scheme:
+\begin{enumerate}
+  \item Create an initial set, consisting of a few distinctly political words and party names (paying extra attention to other abbreviations that could match these party names, such as SVP - which is both a party name in Switzerland, and the shortened form of "s'il vous plait" in French).
+  \item Find tweets that contain words in the political word set and call it the political tweet set.
+  \item Compare the probability of words in the political tweet set with their probabilities in the entire tweet set using point-wise KL-divergence. Those that attain a higher score are words that have a much higher frequency in the political set than in the entire set, and are also sufficiently frequent (so we don't capture words that occur only once across the whole dataset).
+  \item Choose the top-scoring words, add them to the political word set.
+  \item Repeat 2-4 as long as desired (e.g. as long as clearly low-precision words do not start appearing in the set).
+\end{enumerate}
+Given the fact that we also have a set of politician accounts available to us [CITATION TO THE POLITICIAN ACCOUNT SET], we augment our initial set by first retrieving all "politician tweets", ranking their words (using the KL-divergence method described above) and taking some of those top-ranking words to our initial set. \\
+Some details of our method are as follows:
+\begin{itemize}
+  \item We do the bootstrapping separately for French and German, because we do not want to find French words in German tweets and vice versa. Therefore, we have one French word set and one German word set.
+  \item Before doing the bootstrapping, we remove stopwords and punctuation.
+  \item In order to increase precision, among the top-scoring words we only consider the hashtags and disregard the rest (both in the politician tweets, and in the actual bootstrapping steps).
+\end{itemize}
+Our ultimate aim is to see whether after collecting this political tweet set, significant political events (such as elections or referendums) create spikes in the plot of these tweets against time and whether by looking at those spikes, we can detect those event. This will establish our method as a framework for detecting significant political events based on spikes in political tweet activity. This will be further discussed in the Results section.
