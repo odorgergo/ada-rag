@@ -467,14 +467,15 @@ function toInt(n){ return Math.round(Number(n)); };
 // Color Map START
 // PROCESS BOOK > INTERVAL & COLOR CHOICE
 function getColor(d) {
-    return d > 4 ? '#91003f':
-           d > 3.5 ? '#ce1256':
-           d > 3 ? '#e7298a':
-           d > 2.5 ? '#df65b0':
-           d > 2 ? '#c994c7':
-           d > 1 ? '#d4b9da':
-           d > 0   ? '#e7e1ef':
-                     '#f7f4f9';
+    return d > 4.5 ? '#49006a':
+           d > 4 ? '#7a0177':
+           d > 3.5 ? '#ae017e':
+           d > 3 ? '#dd3497':
+           d > 2.5 ? '#f768a1':
+           d > 2 ? '#fa9fb5':
+           d > 1 ? '#fcc5c0':
+           d > 0   ? '#fde0dd':
+                     '#fff7f3';
 }
 
 function style(feature) {
@@ -541,25 +542,25 @@ select.onchange = function() {
 //     ID = select.value.split(',').slice(0,1);
 // }
 // Add a Legend START
-var legend = L.control({position: 'bottomright'});
-
-legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 1, 2, 2.5, 3, 3.5, 4]
-        labels = [];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
-
-    return div;
-};
-
-legend.addTo(map);
+// var legend = L.control({position: 'bottomright'});
+//
+// legend.onAdd = function (map) {
+//
+//     var div = L.DomUtil.create('div', 'info legend'),
+//         grades = [0, 1, 2, 2.5, 3, 3.5, 4]
+//         labels = [];
+//
+//     // loop through our density intervals and generate a label with a colored square for each interval
+//     for (var i = 0; i < grades.length; i++) {
+//         div.innerHTML +=
+//             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+//             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+//     }
+//
+//     return div;
+// };
+//
+// legend.addTo(map);
 // Add a Legend END
 
 // Active Listeners
