@@ -128,7 +128,7 @@ info.onAdd = function (map) {
 info.update = function (properties) {
     this._div.innerHTML = (properties ?
         '<b>' + properties.GMDNAME + '</b><br />' + get_density(properties.GMDNAME,YEAR,MONTH) + ' tweets'
-        : '<h4>Swiss tweets</h4>' + '<span style="font-size:15px;color:gray;">Hover Over a Canton</span>');
+        : '<h4>Swiss tweets</h4>' + '<span style="font-size:15px;color:gray;">Hover Over a municipality</span>');
 };
 
 info.addTo(map);
