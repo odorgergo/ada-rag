@@ -20,7 +20,7 @@ The first three columns of the dataset (id, userid, createdAt (date)) were all n
   \d{4,}\t\d{4,}\t\d{4}\-\d{2}\-\d{2}\s\d{2}:\d{2}:\d{2}
 \end{Verbatim}
 
-which has worked with 100\% accuracy. This allowed us to find the beginning of each row, however, separating the cells was still difficult. We decided to split on \textbackslash t, and merge together the cells [3:-16] as the text cell, since we expected that the last 16 and the first 3 columns had no \textbackslash t, only possibly $4^{th}$ (text) column. It turned out that we were wrong, the last ($20^{th}$) column (userLocation) also had \textbackslash t, but these exceptions only involved less than 20000 datapoints (out of $\sim$ 20 million), so we neglected these. We will see later that this is a tiny fraction compared to the fraction of datapoints we had to exclude due to other issues with the dataset.
+which proved to be very reliable in our tests. This allowed us to find the beginning of each row, however, separating the cells was still difficult. We decided to split on \textbackslash t, and merge together the cells [3:-16] as the text cell, since we expected that the last 16 and the first 3 columns had no \textbackslash t, only possibly $4^{th}$ (text) column. It turned out that we were wrong, the last ($20^{th}$) column (userLocation) also had \textbackslash t, but these exceptions only involved less than 20000 datapoints (out of $\sim$ 20 million), so we neglected these. We will see later that this is a tiny fraction compared to the fraction of datapoints we had to exclude due to other issues with the dataset.
 
 \subsubsection{Processing geolocation}
 \label{pre_geo}
@@ -29,14 +29,28 @@ Out of the $\sim$ 20 million tweets, about $\sim$ 18 million were geolocated. On
 
 For our later analyses, we had to detect the municipality each tweet came from. We made use of the geojson map which contained the boundaries of each  municipality as a polygon, and we used the \textit{shapely} python library to detect which polygon each geolocation is in \cite{shapely}. Since the 10 million tweets came from only less than 15000 unique locations (probably since the geolocations were not the exact locations of the users, rather maybe the location of the transmissing tower each cellphone was connected to), we could compute the municipality information in less than 30 mins.
 
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{images/all_tweet_map.png}
+  \caption{Colors on the map show the logarithm (base 10) of the number of tweets in the whole dataset coming from each municipality}
+  \label{all_tweet_map}
+\end{figure}
+
+
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{images/heat_map.png}
+  \caption{The heatmap of the number of tweets in September 2016.}
+  \label{heat_map}
+\end{figure}
+
 
 
 \subsubsection{Language detection}
 
-Language detection was a crucial step especially for research question 2, but also for detecting political content. For this task, we used the \textit{langdetect} python library, a port of Google's language detection code based on a naive Bayesian filter \cite{langdetect}. This is the only task for which we had to use the hadoop cluster. Our simple spark code took 3 hours on ?? nodes.
+Language detection was a crucial step especially for research question 2, but also for detecting political content. For this task, we used the \textit{langdetect} python library \cite{pylangdetect}, a port of Google's language detection code based on a naive Bayesian filter \cite{nakatani2010langdetect}. This is the only task for which we had to use the hadoop cluster. Our simple spark code took 3 hours on ?? nodes.
 
 Unfortunately, by manual inspection we saw that the accuracy of \textit{langdetect} was far from perfect (even though the website claimed 99\% accuracy). One of our concerns was that possibly the swiss german dialect could cause problems, so we downloaded a swiss german corpus and tested \textit{langdetect} on the sentences of the text. On the collection of swiss german blogposts we saw an accuracy above 82\%, whereas on the ``Blick am Abig" newspaper from Z\"urich our accuracy was above 95\% (the majority of tweets were classified as simply german in both cases). After this confirmation, we concluded that the observed errors are probably due to the fact that tweets are short and don't follow the rules of the languages very closely. 
 
+The distribution of tweets over the municipalities is visualized on Figure \ref{all_tweet_map}. On Figure \ref{heat_map} we show a heatmap of twitter activity for only one month (over the whole dataset this was too computation intensive).
 
 \begin{figure}[h]
   \includegraphics[width=0.45\textwidth]{images/swiss_counts.eps}
