@@ -54,9 +54,9 @@ function update(data) {
   bar.select("text")
     .transition(t)
       .tween("text", function(d) {
-        const v0 = this.textContent || "0";
+        const v0 = this.textContent;
         const v1 = d.value;
-        const i = d3.interpolateRound(v0, v1);
+        const i = d3.interpolateNumber(v0, v1);
         return t => this.textContent = i(t);
       });
 

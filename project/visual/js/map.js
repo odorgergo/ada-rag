@@ -505,14 +505,13 @@ select.onchange = function() {
   v = tweet_per_lang[YEAR][MONTH]
   sum = Object.values(v).reduce((a, b) => a + b, 0);
   if (sum!=0){
-    data = langs.map(l => ({id: l, label: l, value: v[l]*100/sum}))
+    data = langs.map(l => ({id: l, label: l, value: (v[l]*100/sum).toPrecision(4)}))
   }
   else{
     data = langs.map(l => ({id: l, label: l, value: 0}))
   }
   // DATA=Object.values(v)
   langs = ["de", "fr", "it", "en"];
-  data = langs.map(l => ({id: l, label: l, value: v[l]*100/sum}))
   // console.log(data)
   d3.select("#total_title").text('Total number of tweets in'+' ' + mon+' '+YEAR +': '+ sum);
   update(data)
