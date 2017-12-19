@@ -4,9 +4,9 @@ The code for the project is available at  \cite{project_repo}.
 
 \subsection{Acquiring the datasets}
 
-We primarily use with the swiss tweets dataset provided by the ADA team (originally by Swisscom). The tweets were queried using a bounding box around Switzerland, which means that not all tweets are actually swiss. We will explain how we filter the ones outside of Switzerland in section \ref{pre_geo}.
+We primarily work with a dataset of geolocated Swiss tweets provided by the ADA team (originally by Swisscom). The tweets were queried using a bounding box around Switzerland, which means that not all tweets are actually Swiss. We will explain how we filter the ones outside of Switzerland in section \ref{pre_geo}.
 
-We also used several supporting datasets, which were not straightforward to locate and acquire. The geojson file for the boundary of swiss municipalities was downloaded from \cite{swiss_geo}. The population data was acquired from \cite{pop_data} and the population densities were downloaded from \cite{swiss_pop_density}. For detecting political activity we used the data of \cite{tw_useful} available at \cite{swiss_political_users}.
+We also used several supporting datasets, which were not straightforward to locate and acquire. The geojson file for the boundary of Swiss municipalities was downloaded from \cite{swiss_geo}. The population data was acquired from \cite{pop_data} and the population densities were downloaded from \cite{swiss_pop_density}. For detecting political activity we used the data of \cite{tw_useful} available at \cite{swiss_political_users}.
 \subsection{Preprocessing data}
 
 \subsubsection{Reading the data}
@@ -25,9 +25,9 @@ which proved to be very reliable in our tests. This allowed us to find the begin
 \subsubsection{Processing geolocation}
 \label{pre_geo}
 
-Out of the $\sim$ 20 million tweets, about $\sim$ 18 million were geolocated. Only about 10 million these geolocations were in Switzerland (the rest came from neighbouring countries in the bounding box). Since our goal was to analyse only swiss tweets, the rest of the datapoints (about 50\% of the whole) had to be dropped.
+Out of the $\sim$ 20 million tweets, about $\sim$ 18 million were geolocated. Only about 10 million these geolocations were in Switzerland (the rest came from neighbouring countries in the bounding box). Since our goal was to analyse only Swiss tweets, the rest of the datapoints (about 50\% of the whole) had to be dropped.
 
-For our later analyses, we had to detect the municipality each tweet came from. We made use of the geojson map which contained the boundaries of each  municipality as a polygon, and we used the \textit{shapely} python library to detect which polygon each geolocation is in \cite{shapely}. Since the 10 million tweets came from only less than 15000 unique locations (probably since the geolocations were not the exact locations of the users, rather maybe the location of the transmissing tower each cellphone was connected to), we could compute the municipality information in less than 30 mins.
+For our later analyses, we had to detect the municipality each tweet came from. We made use of the geojson map which contained the boundaries of each  municipality as a polygon, and we used the \textit{shapely} python library to detect which polygon each geolocation is in \cite{shapely}. Since the 10 million tweets came from only less than 15000 unique locations (probably since the geolocations were not the exact locations of the users, rather maybe the location of the transmissing tower each cellphone was connected to), we could compute the municipality information in less than 30 minutes.
 
 \begin{figure}[h]
   \includegraphics[width=0.5\textwidth]{images/all_tweet_map.png}
@@ -46,9 +46,9 @@ For our later analyses, we had to detect the municipality each tweet came from. 
 
 \subsubsection{Language detection}
 
-Language detection was a crucial step especially for research question 2, but also for detecting political content. For this task, we used the \textit{langdetect} python library \cite{pylangdetect}, a port of Google's language detection code based on a naive Bayesian filter \cite{nakatani2010langdetect}. This is the only task for which we had to use the hadoop cluster. Our simple spark code took 3 hours on ?? nodes.
+Language detection was a crucial step especially for research question 2, but also for detecting political content. For this task, we used the \textit{langdetect} python library \cite{pylangdetect}, a port of Google's language detection code based on a naive Bayesian filter \cite{nakatani2010langdetect}. This is the only task for which we had to use the hadoop cluster. Our simple spark code took 3 hours on 50 nodes.
 
-Unfortunately, by manual inspection we saw that the accuracy of \textit{langdetect} was far from perfect (even though the website claimed 99\% accuracy). One of our concerns was that possibly the swiss german dialect could cause problems, so we downloaded a swiss german corpus and tested \textit{langdetect} on the sentences of the text. On the collection of swiss german blogposts we saw an accuracy above 82\%, whereas on the ``Blick am Abig" newspaper from Z\"urich our accuracy was above 95\% (the majority of tweets were classified as simply german in both cases). After this confirmation, we concluded that the observed errors are probably due to the fact that tweets are short and don't follow the rules of the languages very closely. 
+Unfortunately, by manual inspection we saw that the accuracy of \textit{langdetect} was far from perfect (even though the website claimed 99\% accuracy). One of our concerns was that possibly the Swiss German dialect could cause problems, so we downloaded a Swiss German corpus and tested \textit{langdetect} on the sentences of the text. On the collection of Swiss German blogposts we saw an accuracy above 82\%, whereas on the ``Blick am Abig" newspaper from Z\"urich our accuracy was above 95\% (the majority of tweets were classified as simply german in both cases). After this confirmation, we concluded that the observed errors are probably due to the fact that tweets are short and don't follow the rules of the languages very closely. 
 
 The distribution of tweets over the municipalities is visualized on Figure \ref{all_tweet_map}. On Figure \ref{heat_map} we show a heatmap of twitter activity for only one month (over the whole dataset this was too computation intensive).
 
