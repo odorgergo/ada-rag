@@ -13,6 +13,21 @@ var slider = d3.sliderHorizontal()
     MONTH  = d3.timeFormat('%m')(val);
     d3.select("#value").text(d3.timeFormat('%B')(val)+' '+YEAR);
     console.log(MONTH)
+    m = parseInt(MONTH);
+    v = tweet_per_lang[YEAR][MONTH]
+    console.log(v)
+    sum = Object.values(v).reduce((a, b) => a + b, 0);
+    // DATA=Object.values(v)
+    langs = ["de", "fr", "it", "en"];
+    if (sum!=0){
+      data = langs.map(l => ({id: l, label: l, value: v[l]*100/sum}))
+    }
+    else{
+      data = langs.map(l => ({id: l, label: l, value: 0}))
+    }
+    console.log(data)
+    update(data)
+    d3.select("#total_title").text('Total number of tweets in'+ ' ' + d3.timeFormat('%B')(val)+' '+YEAR+ ': ' + sum);
 
     // removeOptions(select)
     // clear_description()
@@ -20,6 +35,7 @@ var slider = d3.sliderHorizontal()
     // removeMarkers(E)
     // E = null;
     geojson.setStyle(style);
+    // update(Object.values(tweet_per_lang[YEAR][MONTH]));
 
     // removeNewsLayer()
     // drawNewsDots()
