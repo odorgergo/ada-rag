@@ -11,10 +11,9 @@ In this project we have striven to find answers for, or gain insights into, the 
 
 # Research questions
 
-- Does the density of the location of tweets correspond to population densities? Or are the tweets significantly more concentrated in cities?
+- Does the density of the location of tweets correspond to population densities?
 - Can we reconstruct the Röstigraben only based on the language of tweets?
-- Are there any spikes in activity and do they correspond to particular events (e.g. referendums) 
-- How involved are swiss people in politics on twitter? Which areas are most involved?
+- Can we collect a set of political tweets? If so, are there any spikes in political activity and do they correspond to particular events (e.g. referendums)?
 
 # Dataset
 
