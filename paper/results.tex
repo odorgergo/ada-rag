@@ -1,27 +1,27 @@
 \section{Results}
 
-\subsection{Population density and tweeting location}
+\subsection{Population density vs Twitter popularity}
 
-The distribution of tweets over the municipalities is visualized on Figure \ref{all_tweet_map}. On Figure \ref{heat_map} we show a heatmap of twitter activity for only one month (over the whole dataset this was too computation intensive). From these maps show that indeed highly populated areas have higher twitter activity. However, our question was more subtle, we were interested if the 
-
+To answer our first research question computed the Twitter popularity (or representation) as the number of unique twitter users divided by the population for each municipality. The plot of these values against the population density of 
+each municipality is shown on Figure \ref{mun_pop}. The negative correlation observed on the plot is a very surprising result given that the results in the literature show the exact opposite effect. After checking the data thoroughly observed certain anomalies; e.g. a tweet populatity more than 100\% (this is usually very small municipalities which are maybe ski resorts so there are a lot of tweets by people who don't actually live there). We hypothesised that the result may be due the municipalities being too small and adding a lot of noise, so we decided to perform the same analysis on a cantonal level, but the results were even more extreme (see Figure \ref{can_pop}).
 
 \begin{figure}[h]
-  \includegraphics[width=0.5\textwidth]{images/all_tweet_map.png}
-  \caption{Colors on the map show the logarithm (base 10) of the number of tweets in the whole dataset coming from each municipality}
-  \label{all_tweet_map}
+  \includegraphics[width=0.5\textwidth]{images/mun_density_pop.eps}
+  \caption{We plot the population density vs twitter popularity in each municipality on a log-log scale. The correlation value (of the log values) was -0.398908.}
+  \label{mun_pop}
 \end{figure}
 
 
-
 \begin{figure}[h]
-  \includegraphics[width=0.5\textwidth]{images/heat_map.png}
-  \caption{The heatmap of the number of tweets in September 2016.}
-  \label{heat_map}
+  \includegraphics[width=0.5\textwidth]{images/can_density_pop.eps}
+  \caption{We plot the population density vs twitter popularity in each canton on a log-log scale. The correlation value (of the log values) was -0.448168.}
+  \label{can_pop}
 \end{figure}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Reconstructing the R\"ostigraben}
-Figure \ref{rosti_map}
+To detect the R\"ostigraben, we first exlcuded all English language tweets, then we computed the language which had the highest number of tweets for each municipality. We visualize the results on Figure \ref{rosti_map}. Our results seams very robust and agrees with the official definiton of the R\"ostigraben. This is a very reassuring results given the simplicity of our method and our preliminary concerns with the dataset.
 
 \begin{figure}[h]
   \includegraphics[width=0.5\textwidth]{images/rosti_map.png}
@@ -29,5 +29,10 @@ Figure \ref{rosti_map}
   \label{rosti_map}
 \end{figure}
 
+\begin{figure}[h]
+  \includegraphics[width=0.5\textwidth]{images/Map_Languages_CH.png}
+  \caption{The R\"ostigraben from its Wikipedia page (originally from admin.ch)}
+  \label{rosti_map_wiki}
+\end{figure}
 
 \input{results_politics} 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.3)  17 DEC 2017 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.3)  17 DEC 2017 18:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -333,8 +333,27 @@ LaTeX Warning: Citation `shapely' on page 1 undefined on input line 30.
 
 
 ]
+<images/all_tweet_map.png, id=103, 991.705pt x 596.2275pt>
+File: images/all_tweet_map.png Graphic file (type png)
 
-LaTeX Warning: Citation `langdetect' on page 2 undefined on input line 36.
+<use images/all_tweet_map.png>
+Package pdftex.def Info: images/all_tweet_map.png used on input line 33.
+(pdftex.def)             Requested size: 252.94499pt x 152.06784pt.
+
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 33--34
+[][] 
+ []
+
+<images/heat_map.png, id=105, 522.95375pt x 316.18124pt>
+File: images/heat_map.png Graphic file (type png)
+
+<use images/heat_map.png>
+Package pdftex.def Info: images/heat_map.png used on input line 40.
+(pdftex.def)             Requested size: 252.94499pt x 152.9328pt.
+
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 40--41
+[][] 
+ []
 
 Package epstopdf Info: Source file: <images/swiss_counts.eps>
 (epstopdf)                    date: 2017-12-16 16:54:21
@@ -344,14 +363,14 @@ Package epstopdf Info: Source file: <images/swiss_counts.eps>
 (epstopdf)                    size: 13082 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/swiss_counts-eps-co
 nverted-to.pdf images/swiss_counts.eps>
-(epstopdf)             \includegraphics on input line 42.
+(epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
-<images/swiss_counts-eps-converted-to.pdf, id=103, 433.62pt x 289.08pt>
+<images/swiss_counts-eps-converted-to.pdf, id=110, 433.62pt x 289.08pt>
 File: images/swiss_counts-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/swiss_counts-eps-converted-to.pdf>
 Package pdftex.def Info: images/swiss_counts-eps-converted-to.pdf used on input
- line 42.
+ line 56.
 (pdftex.def)             Requested size: 227.64894pt x 151.76926pt.
 Package epstopdf Info: Source file: <images/swiss_counts16.eps>
 (epstopdf)                    date: 2017-12-16 16:54:18
@@ -362,40 +381,74 @@ Package epstopdf Info: Source file: <images/swiss_counts16.eps>
 (epstopdf)                    size: 12710 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/swiss_counts16-eps-
 converted-to.pdf images/swiss_counts16.eps>
-(epstopdf)             \includegraphics on input line 50.
+(epstopdf)             \includegraphics on input line 64.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/swiss_counts16-eps-converted-to.pdf, id=104, 433.62pt x 289.08pt>
+<images/swiss_counts16-eps-converted-to.pdf, id=111, 433.62pt x 289.08pt>
 File: images/swiss_counts16-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/swiss_counts16-eps-converted-to.pdf>
 Package pdftex.def Info: images/swiss_counts16-eps-converted-to.pdf used on inp
-ut line 50.
+ut line 64.
 (pdftex.def)             Requested size: 227.64894pt x 151.76926pt.
  (./methods_politics.tex))
-(./results.tex <images/all_tweet_map.png, id=107, 991.705pt x 596.2275pt>
-File: images/all_tweet_map.png Graphic file (type png)
+(./results.tex
+Package epstopdf Info: Source file: <images/mun_density_pop.eps>
+(epstopdf)                    date: 2017-12-17 18:29:39
+(epstopdf)                    size: 64192 bytes
+(epstopdf)             Output file: <images/mun_density_pop-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2017-12-17 18:30:25
+(epstopdf)                    size: 261559 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/mun_density_pop-eps
+-converted-to.pdf images/mun_density_pop.eps>
+(epstopdf)             \includegraphics on input line 9.
+Package epstopdf Info: Output file is already uptodate.
 
-<use images/all_tweet_map.png>
-Package pdftex.def Info: images/all_tweet_map.png used on input line 9.
-(pdftex.def)             Requested size: 252.94499pt x 152.06784pt.
+<images/mun_density_pop-eps-converted-to.pdf, id=114, 433.62pt x 289.08pt>
+File: images/mun_density_pop-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/mun_density_pop-eps-converted-to.pdf>
+Package pdftex.def Info: images/mun_density_pop-eps-converted-to.pdf used on in
+put line 9.
+(pdftex.def)             Requested size: 252.94499pt x 168.63252pt.
 
 Overfull \hbox (9.03374pt too wide) in paragraph at lines 9--10
 [][] 
  []
 
-<images/heat_map.png, id=109, 522.95375pt x 316.18124pt>
-File: images/heat_map.png Graphic file (type png)
 
-<use images/heat_map.png>
-Package pdftex.def Info: images/heat_map.png used on input line 17.
-(pdftex.def)             Requested size: 252.94499pt x 152.9328pt.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 17--18
+Package epstopdf Info: Source file: <images/can_density_pop.eps>
+(epstopdf)                    date: 2017-12-17 15:09:12
+(epstopdf)                    size: 37027 bytes
+(epstopdf)             Output file: <images/can_density_pop-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2017-12-17 18:29:11
+(epstopdf)                    size: 28591 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/can_density_pop-eps
+-converted-to.pdf images/can_density_pop.eps>
+(epstopdf)             \includegraphics on input line 16.
+Package epstopdf Info: Output file is already uptodate.
+<images/can_density_pop-eps-converted-to.pdf, id=115, 578.16pt x 361.35pt>
+File: images/can_density_pop-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/can_density_pop-eps-converted-to.pdf>
+Package pdftex.def Info: images/can_density_pop-eps-converted-to.pdf used on in
+put line 16.
+(pdftex.def)             Requested size: 252.94499pt x 158.09024pt.
+
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 16--17
 [][] 
  []
 
-<images/rosti_map.png, id=111, 988.69376pt x 595.22375pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2 <./images/all_tweet_map.png> <./images/heat_map.png> <./images/swiss_counts-
+eps-converted-to.pdf> <./images/swiss_counts16-eps-converted-to.pdf>]
+<images/rosti_map.png, id=179, 988.69376pt x 595.22375pt>
 File: images/rosti_map.png Graphic file (type png)
 
 <use images/rosti_map.png>
@@ -403,6 +456,20 @@ Package pdftex.def Info: images/rosti_map.png used on input line 27.
 (pdftex.def)             Requested size: 252.94499pt x 152.27504pt.
 
 Overfull \hbox (9.03374pt too wide) in paragraph at lines 27--28
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/Map_Languages_CH.png, id=180, 1505.625pt x 908.39375pt>
+File: images/Map_Languages_CH.png Graphic file (type png)
+
+<use images/Map_Languages_CH.png>
+Package pdftex.def Info: images/Map_Languages_CH.png used on input line 33.
+(pdftex.def)             Requested size: 252.94499pt x 152.6091pt.
+
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 33--34
 [][] 
  []
 
@@ -419,25 +486,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <4.25> on input line 30.
 
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
-[]$\OT1/ptm/m/n/8.5 https : / / www . swissinfo . ch / eng / directdemocracy / 
-digital-[]democracy[]
+[]\OT1/ptm/m/n/8.5 A. Fichter, ``The Swiss politi-cians who
  []
 
-[2 <./images/swiss_counts-eps-converted-to.pdf> <./images/swiss_counts16-eps-co
-nverted-to.pdf> <./images/all_tweet_map.png> <./images/heat_map.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 33--35
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+\OT1/ptm/m/n/8.5 have mas-tered Twit-ter,'' []$https : / / www . swissinfo .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+\OT1/ptm/m/n/8.5 ch / eng / directdemocracy / digital-[]democracy[]
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 39--41
 []\OT1/ptm/m/n/8.5 ``Project repos-i-tory,'' []$https : / / github . com / odor
 gergo / ada-[]rag / tree /
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 37--40
-[]\OT1/ptm/m/n/8.5 ``Switzerland mu-nic-i-pal-i-ties,'' []$https : / / raw . gi
-thubusercontent . com /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 37--40
+Underfull \hbox (badness 10000) in paragraph at lines 43--46
 \OT1/ptm/m/n/8.5 lvonlanthen / data-[]map-[]d3 / master / data / ch[]municipali
 ties . geojson$[],
  []
@@ -457,7 +526,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--59
 \OT1/ptm/m/n/8.5 1tXUh3ch1fw4Oa7PijB5fusQZFb3GLdGrlJTtIhNw7PY / edit #
  []
 
-)
+[3 <./images/mun_density_pop-eps-converted-to.pdf> <./images/can_density_pop-ep
+s-converted-to.pdf> <./images/rosti_map.png> <./images/Map_Languages_CH.png>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -470,15 +540,15 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 31.
-[3
+[4
 
- <./images/rosti_map.png>]
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 31.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 31.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 31.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D8CA86AD183E93221E639CBEDC85227F;1044.
+(rerunfilecheck)             Checksum: DFD9C0185844264B4EB02A2845B8B828;1044.
 
 
 LaTeX Warning: There were undefined references.
@@ -486,13 +556,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 31.
  ) 
 Here is how much of TeX's memory you used:
- 6291 strings out of 493089
- 97500 string characters out of 6134843
- 186132 words of memory out of 5000000
- 9678 multiletter control sequences out of 15000+600000
+ 6316 strings out of 493089
+ 98201 string characters out of 6134843
+ 186636 words of memory out of 5000000
+ 9694 multiletter control sequences out of 15000+600000
  38030 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,8n,28p,804b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,28p,804b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
@@ -501,10 +571,10 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 1466447 bytes).
+Output written on main.pdf (4 pages, 1923174 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
