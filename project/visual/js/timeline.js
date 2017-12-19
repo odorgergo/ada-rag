@@ -17,17 +17,19 @@ var slider = d3.sliderHorizontal()
     v = tweet_per_lang[YEAR][MONTH]
     // console.log(v)
     sum = Object.values(v).reduce((a, b) => a + b, 0);
+    total = total_per_month[YEAR][MONTH];
     // DATA=Object.values(v)
     langs = ["de", "fr", "it", "en"];
-    if (sum!=0){
-      data = langs.map(l => ({id: l, label: l, value: (v[l]*100/sum).toPrecision(4)}))
+    if (total!=0){
+      data = langs.map(l => ({id: l, label: l, value: (v[l]*100/total).toPrecision(4)}))
+      data.push({id: 'others', label: 'others', value: ((total-sum)/total).toPrecision(4)})
     }
     else{
       data = langs.map(l => ({id: l, label: l, value: 0}))
     }
     console.log(data)
     update(data)
-    d3.select("#total_title").text('Total number of tweets in'+ ' ' + d3.timeFormat('%B')(val)+' '+YEAR+ ': ' + sum);
+    d3.select("#total_title").text('Total number of tweets in'+ ' ' + d3.timeFormat('%B')(val)+' '+YEAR+ ': ' + total);
 
     // removeOptions(select)
     // clear_description()
